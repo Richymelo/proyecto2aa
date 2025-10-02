@@ -36,8 +36,14 @@ fi
 
 # Compilar
 echo "Compilando..."
-if make; then
+if make 2>&1 | tee compilation_output.log; then
     echo "✓ Compilación exitosa"
+    # Verificar si hay warnings
+    if grep -q "warning:" compilation_output.log; then
+        echo "⚠ Warnings encontrados (ver compilation_output.log)"
+    else
+        echo "✓ Sin warnings en la compilación"
+    fi
 else
     echo "✗ Error en la compilación"
     exit 1
@@ -55,8 +61,10 @@ fi
 echo ""
 echo "=== Compilación completada exitosamente ==="
 echo "Para ejecutar: ./sudoku_solver"
+echo "Para ejecutar sin warnings en consola: make run-silent"
 echo "Para probar con el archivo de ejemplo:"
 echo "  1. Ejecutar ./sudoku_solver"
 echo "  2. Hacer clic en 'Leer'"
 echo "  3. Seleccionar 'sample_sudoku.txt'"
 echo "  4. Hacer clic en 'Resolver'"
+

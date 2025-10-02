@@ -174,3 +174,4 @@ int resolver_sudoku(SolverContext *context) {
         return 0;
     }
 }
+

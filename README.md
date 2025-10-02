@@ -1,99 +1,73 @@
-# Solucionador de Sudoku - Proyecto 2 Análisis de Algoritmos
+# Solucionador de Sudoku - Proyecto 2
 
-Este proyecto implementa un solucionador de Sudoku usando el algoritmo clásico de backtracking con una interfaz gráfica desarrollada en GTK y Glade.
+**Curso:** Análisis de Algoritmos  
+**Institución:** Instituto Tecnológico de Costa Rica  
+**Semestre:** II Semestre 2025  
+
+## Descripción
+
+Implementación de un solucionador de Sudoku utilizando el algoritmo de backtracking con interfaz gráfica desarrollada en GTK+3 y Glade. El proyecto cumple con todos los requisitos especificados para el análisis de algoritmos.
 
 ## Características
 
-- **Interfaz Gráfica**: Desarrollada con GTK+3 y Glade
-- **Algoritmo de Backtracking**: Implementación clásica según las especificaciones del proyecto
-- **Actualización en Tiempo Real**: Muestra el progreso de la resolución paso a paso
-- **Timer de Alta Precisión**: Cronómetro con precisión de milisegundos
-- **Guardar/Cargar**: Funcionalidad para guardar y cargar puzzles de Sudoku
-- **Validación Visual**: Distingue entre pistas iniciales y celdas calculadas
-- **Subsecciones 3x3**: Visualización clara de las 9 subsecciones del Sudoku
+- **Algoritmo:** Backtracking clásico según especificaciones
+- **Interfaz:** GTK+3 con diseño en Glade
+- **Visualización:** Actualización en tiempo real del proceso de resolución
+- **Precisión:** Timer con resolución de milisegundos
+- **Funcionalidades:** Cargar/guardar archivos, validación visual
+
+## Requisitos del Sistema
+
+- **SO:** Linux
+- **Compilador:** GCC con soporte C99
+- **Dependencias:** GTK+3, pkg-config
+
+### Instalación de Dependencias
+
+```bash
+# Ubuntu/Debian
+sudo apt-get install libgtk-3-dev pkg-config build-essential
+
+# Fedora/CentOS  
+sudo dnf install gtk3-devel pkg-config gcc make
+
+# Arch Linux
+sudo pacman -S gtk3 pkg-config gcc make
+```
+
+## Compilación y Ejecución
+
+```bash
+# Compilar
+make
+
+# Ejecutar
+./sudoku_solver
+
+# Ejecutar sin warnings
+make run-silent
+
+# Limpiar archivos compilados
+make clean
+```
 
 ## Estructura del Proyecto
 
 ```
 proyecto2aa/
-├── sudoku_solver.c      # Archivo principal con interfaz GTK
-├── Sudoku.h             # Definición de estructura de datos Sudoku
-├── Sudoku.c             # Implementación de funciones básicas de Sudoku
-├── SudokuSolver.h       # Definición del algoritmo de backtracking
-├── SudokuSolver.c       # Implementación del algoritmo de backtracking
-├── sudoku_solver.glade  # Archivo de interfaz Glade
-├── sudoku_style.css     # Estilos CSS para la interfaz
-├── sample_sudoku.txt    # Archivo de ejemplo con un Sudoku
-├── Makefile             # Archivo de compilación
-└── README.md            # Este archivo
+├── sudoku_solver.c           # Archivo principal
+├── Sudoku.c/.h               # Estructura de datos Sudoku
+├── SudokuSolver.c/.h         # Algoritmo de backtracking
+├── sudoku_solver.glade       # Interfaz Glade
+├── sudoku_style.css          # Estilos CSS
+├── sample_sudoku.txt         # Ejemplo de Sudoku
+├── Makefile                  # Configuración de compilación
+└── README.md                 # Documentación
 ```
 
-## Requisitos del Sistema
+## Algoritmo de Backtracking
 
-- **Sistema Operativo**: Linux (requisito del proyecto)
-- **Compilador**: GCC con soporte C99
-- **Librerías**: GTK+3, pkg-config
-- **Herramientas**: make
-
-### Instalación de Dependencias
-
-#### Ubuntu/Debian:
-```bash
-sudo apt-get update
-sudo apt-get install -y libgtk-3-dev pkg-config build-essential
-```
-
-#### Fedora/CentOS:
-```bash
-sudo dnf install gtk3-devel pkg-config gcc make
-```
-
-#### Arch Linux:
-```bash
-sudo pacman -S gtk3 pkg-config gcc make
-```
-
-## Compilación
-
-### Compilación Automática:
-```bash
-make
-```
-
-### Compilación Manual:
-```bash
-gcc -Wall -Wextra -std=c99 -g `pkg-config --cflags gtk+-3.0` -c sudoku_solver.c -o sudoku_solver.o
-gcc -Wall -Wextra -std=c99 -g `pkg-config --cflags gtk+-3.0` -c Sudoku.c -o Sudoku.o
-gcc -Wall -Wextra -std=c99 -g `pkg-config --cflags gtk+-3.0` -c SudokuSolver.c -o SudokuSolver.o
-gcc -Wall -Wextra -std=c99 -g -o sudoku_solver sudoku_solver.o Sudoku.o SudokuSolver.o `pkg-config --libs gtk+-3.0`
-```
-
-## Ejecución
-
-```bash
-./sudoku_solver
-```
-
-## Funcionalidades
-
-### Interfaz de Usuario
-
-1. **Grid 9x9**: Tablero principal con 81 celdas
-2. **Subsecciones 3x3**: Colores alternados para visualizar las 9 subsecciones
-3. **Pistas Iniciales**: Celdas no editables con fondo gris
-4. **Timer**: Cronómetro de alta precisión (milisegundos)
-5. **Estado**: Etiqueta que muestra el estado actual del programa
-
-### Botones
-
-- **Salir**: Termina la ejecución del programa
-- **Leer**: Carga un problema previamente guardado
-- **Grabar**: Guarda el problema actual en un archivo
-- **Resolver**: Inicia la búsqueda de solución usando backtracking
-
-### Algoritmo de Backtracking
-
-El algoritmo implementa exactamente la lógica especificada en el proyecto:
+El algoritmo implementa la lógica especificada:
 
 ```
 casilla actual = primera casilla sin llenar;
@@ -119,18 +93,18 @@ while (!terminado) {
 }
 ```
 
-### Validaciones
+## Validaciones
 
-Para cada dígito intentado en una casilla [i][j]:
-- No puede estar repetido en la fila i
-- No puede estar repetido en la columna j  
-- No puede estar repetido en la subsección 3x3 que contiene [i][j]
+Para cada dígito en posición [i][j]:
+- No repetido en fila i
+- No repetido en columna j
+- No repetido en subsección 3x3
 
 ## Formato de Archivos
 
-Los archivos de Sudoku se guardan en formato texto con:
-- 9 líneas
-- 9 números por línea (0 para celdas vacías, 1-9 para pistas)
+Los archivos de Sudoku utilizan formato texto:
+- 9 líneas, 9 números por línea
+- 0 para celdas vacías, 1-9 para pistas
 - Números separados por espacios
 
 Ejemplo:
@@ -146,82 +120,35 @@ Ejemplo:
 0 0 0 0 8 0 0 7 9
 ```
 
-## Características Técnicas
+## Generación de Interfaz Completa
 
-### Actualización Constante
-- La interfaz se actualiza en tiempo real durante la resolución
-- Cada movimiento del algoritmo es visible al usuario
-- Timer actualizado cada 10ms para máxima precisión
+Para generar el archivo Glade completo con las 81 celdas:
 
-### Precisión de Tiempo
-- Utiliza `clock_gettime()` con `CLOCK_MONOTONIC` para alta precisión
-- Muestra tiempo en formato MM:SS.mmm (minutos:segundos.milisegundos)
-
-### Manejo de Eventos
-- Procesamiento de eventos GTK durante la resolución para mantener interfaz responsiva
-- Validación de entrada en tiempo real
-- Prevención de modificaciones durante la resolución
+```bash
+chmod +x generate_complete_glade.sh
+./generate_complete_glade.sh
+```
 
 ## Cumplimiento de Requisitos
 
-✅ **Todo el código en C**: Implementación completa en lenguaje C
-✅ **Algoritmo especificado**: Backtracking exacto según especificaciones
-✅ **GTK y Glade**: Interfaz gráfica desarrollada con estas herramientas
-✅ **Linux**: Compilación y ejecución en Linux
-✅ **Actualización constante**: Interfaz actualizada durante resolución
-✅ **Timer de alta precisión**: Cronómetro con milisegundos
-✅ **Guardar/Cargar**: Funcionalidad completa de archivos
-✅ **Validación**: Verificación de filas, columnas y subsecciones
-✅ **Sin segmentation faults**: Manejo robusto de errores
-✅ **Interfaz profesional**: Diseño limpio y funcional
+✅ Código en C  
+✅ Algoritmo de backtracking especificado  
+✅ Interfaz GTK+3 y Glade  
+✅ Compilación en Linux  
+✅ Actualización constante durante resolución  
+✅ Timer de alta precisión  
+✅ Funcionalidad guardar/cargar  
+✅ Validación completa  
+✅ Sin errores de segmentación  
+✅ Interfaz profesional  
 
-## Comandos Útiles
+## Uso del Programa
 
-```bash
-# Limpiar archivos compilados
-make clean
+1. Ejecutar `./sudoku_solver`
+2. Cargar un Sudoku con "Leer"
+3. Hacer clic en "Resolver" para ver el algoritmo en acción
+4. Guardar el resultado con "Grabar"
 
-# Verificar sintaxis
-make check
+---
 
-# Instalar dependencias (Ubuntu/Debian)
-make install-deps
-
-# Ejecutar después de compilar
-make run
-```
-
-## Solución de Problemas
-
-### Error de compilación con GTK:
-```bash
-# Verificar que GTK está instalado
-pkg-config --modversion gtk+-3.0
-
-# Si no está instalado:
-sudo apt-get install libgtk-3-dev pkg-config
-```
-
-### Error de ejecución:
-```bash
-# Verificar que el ejecutable tiene permisos
-chmod +x sudoku_solver
-
-# Ejecutar con debug
-gdb ./sudoku_solver
-```
-
-### Archivo CSS no encontrado:
-Asegúrate de ejecutar el programa desde el directorio que contiene `sudoku_style.css`.
-
-## Autor
-
-Proyecto desarrollado para el curso de Análisis de Algoritmos - II Semestre 2025, Instituto Tecnológico de Costa Rica.
-
-## Notas de Desarrollo
-
-- El proyecto cumple con todos los requisitos indispensables especificados
-- No utiliza librerías adicionales más allá de GTK+3
-- Código completamente documentado en español
-- Implementación robusta sin memory leaks
-- Interfaz intuitiva y profesional
+**Desarrollado para:** Curso de Análisis de Algoritmos - TEC 2025

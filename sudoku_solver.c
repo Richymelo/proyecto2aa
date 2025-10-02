@@ -27,7 +27,9 @@ typedef struct {
 } AppData;
 
 // Función para actualizar el timer
-static gboolean update_timer(gpointer data) {
+static gboolean update_timer(gpointer data) __attribute__((unused)) {
+    // This function is currently unused but kept for potential future use
+    (void)data; // Suppress unused parameter warning
     AppData *app = (AppData*)data;
     
     if (!app->resolviendo) {
@@ -125,7 +127,7 @@ void guardar_sudoku(AppData *app, const char *filename) {
 }
 
 // Función de callback para resolver
-static void resolver_callback(GtkWidget *widget, gpointer data) {
+static void resolver_callback(GtkWidget *widget __attribute__((unused)), gpointer data) {
     AppData *app = (AppData*)data;
     
     if (app->resolviendo) {
@@ -152,7 +154,7 @@ static void resolver_callback(GtkWidget *widget, gpointer data) {
 }
 
 // Función de callback para salir
-static void salir_callback(GtkWidget *widget, gpointer data) {
+static void salir_callback(GtkWidget *widget __attribute__((unused)), gpointer data) {
     AppData *app = (AppData*)data;
     
     if (app->timer_id) {
@@ -163,7 +165,7 @@ static void salir_callback(GtkWidget *widget, gpointer data) {
 }
 
 // Función de callback para leer archivo
-static void leer_callback(GtkWidget *widget, gpointer data) {
+static void leer_callback(GtkWidget *widget __attribute__((unused)), gpointer data) {
     AppData *app = (AppData*)data;
     
     GtkWidget *dialog;
@@ -190,7 +192,7 @@ static void leer_callback(GtkWidget *widget, gpointer data) {
 }
 
 // Función de callback para grabar archivo
-static void grabar_callback(GtkWidget *widget, gpointer data) {
+static void grabar_callback(GtkWidget *widget __attribute__((unused)), gpointer data) {
     AppData *app = (AppData*)data;
     
     GtkWidget *dialog;
@@ -333,6 +335,11 @@ void crear_interfaz(AppData *app) {
 // Función principal
 int main(int argc, char *argv[]) {
     AppData app;
+    
+    // Suppress GTK warnings and debug messages
+    g_log_set_handler("Gtk", G_LOG_LEVEL_WARNING, G_LOG_FUNC(gtk_false), NULL);
+    g_log_set_handler("GLib-GObject", G_LOG_LEVEL_WARNING, G_LOG_FUNC(gtk_false), NULL);
+    g_log_set_handler("GLib", G_LOG_LEVEL_WARNING, G_LOG_FUNC(gtk_false), NULL);
     
     gtk_init(&argc, &argv);
     

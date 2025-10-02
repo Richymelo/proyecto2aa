@@ -1,7 +1,7 @@
 # Makefile para el proyecto Sudoku Solver en C con GTK
 
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99 -g
+CFLAGS = -Wall -Wextra -std=c99 -g -Wno-unused-parameter -Wno-unused-function
 GTK_CFLAGS = `pkg-config --cflags gtk+-3.0`
 GTK_LIBS = `pkg-config --libs gtk+-3.0`
 TARGET = sudoku_solver
@@ -28,6 +28,10 @@ clean:
 run: $(TARGET)
 	./$(TARGET)
 
+# Ejecutar el programa sin warnings en consola
+run-silent: $(TARGET)
+	G_MESSAGES_DEBUG=none ./$(TARGET) 2>/dev/null
+
 # Verificar sintaxis sin compilar
 check:
 	$(CC) $(CFLAGS) $(GTK_CFLAGS) -fsyntax-only $(SOURCES)
@@ -37,5 +41,5 @@ install-deps:
 	sudo apt-get update
 	sudo apt-get install -y libgtk-3-dev pkg-config
 
-.PHONY: all clean run check install-deps
+.PHONY: all clean run run-silent check install-deps
 

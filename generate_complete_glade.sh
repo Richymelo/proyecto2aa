@@ -1,3 +1,24 @@
+#!/bin/bash
+
+# Script para generar el archivo Glade completo con las 81 celdas del Sudoku
+# Este script debe ejecutarse en Linux
+
+echo "Generando archivo Glade completo con 81 celdas..."
+
+# Función para determinar la clase CSS basada en la subsección 3x3
+get_css_class() {
+    local row=$1
+    local col=$2
+    local subsection=$(( (row / 3) * 3 + (col / 3) ))
+    if [ $((subsection % 2)) -eq 0 ]; then
+        echo "celda-clara"
+    else
+        echo "celda-oscura"
+    fi
+}
+
+# Crear el archivo Glade
+cat > sudoku_solver.glade << 'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.38.2 -->
 <interface>
@@ -41,8 +62,33 @@
             <property name="row-spacing">2</property>
             <property name="column-homogeneous">True</property>
             <property name="row-homogeneous">True</property>
-            <!-- All 81 Sudoku cells will be added here programmatically -->
-            <!-- The Glade file structure is ready, cells are created in code -->
+EOF
+
+# Generar las 81 celdas
+for row in {0..8}; do
+    for col in {0..8}; do
+        css_class=$(get_css_class $row $col)
+        cat >> sudoku_solver.glade << EOF
+            <child>
+              <object class="GtkEntry" id="cell_${row}_${col}">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="max-length">1</property>
+                <property name="width-chars">2</property>
+                <property name="xalign">0.5</property>
+                <property name="name">${css_class}</property>
+              </object>
+              <packing>
+                <property name="left-attach">${col}</property>
+                <property name="top-attach">${row}</property>
+              </packing>
+            </child>
+EOF
+    done
+done
+
+# Completar el archivo
+cat >> sudoku_solver.glade << 'EOF'
           </object>
           <packing>
             <property name="expand">True</property>
@@ -133,3 +179,9 @@
     </child>
   </object>
 </interface>
+EOF
+
+echo "✓ Archivo Glade completo generado con 81 celdas!"
+echo "✓ Todas las celdas tienen las clases CSS correctas (celda-clara/celda-oscura)"
+echo "✓ El archivo está listo para usar en Linux"
+

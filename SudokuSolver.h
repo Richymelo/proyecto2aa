@@ -33,3 +33,4 @@ void actualizar_celda_solver(SolverContext *context, int fila, int columna, int 
 gboolean procesar_eventos_solver(gpointer data);
 
 #endif // SUDOKU_SOLVER_H
+
