@@ -1,11 +1,11 @@
 
-#include "tableronumeros.h"
+#include "TableroNumeros.h"
 #include <stdio.h>
 
 // Implementación de las funciones
 
 // Inicia los valores de los atributos (iniciarComponentes en Java)
-void iniciarComponentes(TableroNumeros *tablero) {
+void iniciarComponentesTablero(TableroNumeros *tablero) {
     tablero->txtAncho = 70;
     tablero->txtAltura = 70;
     tablero->txtMargen = 4;
@@ -22,7 +22,7 @@ void iniciarComponentes(TableroNumeros *tablero) {
 void inicializarTableroNumeros(TableroNumeros *tablero) {
     // La parte de initComponents() en Java es para la inicialización
     // automática; aquí llamamos a nuestra función de inicialización de atributos.
-    iniciarComponentes(tablero);
+    iniciarComponentesTablero(tablero);
 }
 
 // Configura el tablero (crearTablero en Java)
@@ -43,7 +43,7 @@ void crearTablero(TableroNumeros *tablero) {
 }
 
 // Función placeholder para crear campos de texto (crearCamposTxt en Java)
-void crearCamposTxt(TableroNumeros *tablero) {
+void crearCamposTxtTablero(TableroNumeros *tablero) {
     // La función original está vacía, por lo que aquí solo ponemos un placeholder.
     printf("Función crearCamposTxt ejecutada, pero no se creó ningún widget.\n");
 }

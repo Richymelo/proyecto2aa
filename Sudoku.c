@@ -1,54 +1,107 @@
-#include "kenken.h" // Incluye la definición de la estructura y funciones
-#include <stdio.h>
-#include <string.h> // Para la función memcpy
+#include "Sudoku.h"
+#include <string.h>
 
-// Constructor: Inicializa la estructura Kenken con ceros
-void inicializarKenken(Kenken *k) {
-    // Inicialización directa (similar a la de Java)
-    int kenk_inicial[FILAS][COLUMNAS] = {
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0}
-    };
-    
-    // Copiar la matriz inicial a la matriz de la estructura
-
+// Constructor: Inicializa la estructura Sudoku con ceros
+void inicializarSudoku(Sudoku *s) {
     for (int i = 0; i < FILAS; i++) {
         for (int j = 0; j < COLUMNAS; j++) {
-            k->kenken[i][j] = 0;
+            s->sudoku[i][j] = 0;
+            s->original[i][j] = 0;
         }
     }
-    
 }
 
-// Getter: Retorna un puntero a la matriz Kenken
-// La sintaxis de retorno 'int (*...)[COLUMNAS]' es un puntero a un array de COLUMNAS enteros.
-int (*getKenken(Kenken *k))[COLUMNAS] {
-    return k->kenken;
+// Getter: Retorna un puntero a la matriz Sudoku
+int (*getSudoku(Sudoku *s))[COLUMNAS] {
+    return s->sudoku;
 }
 
 // Setter: Permite establecer el valor de la matriz completa
-void setKenken(Kenken *k, int nuevaKenken[FILAS][COLUMNAS]) {
-    // Usamos memcpy para copiar el contenido de la matriz de entrada
-    memcpy(k->kenken, nuevaKenken, sizeof(int) * FILAS * COLUMNAS);
+void setSudoku(Sudoku *s, int nuevaSudoku[FILAS][COLUMNAS]) {
+    memcpy(s->sudoku, nuevaSudoku, sizeof(int) * FILAS * COLUMNAS);
 }
 
 // Función para obtener un valor específico
-int getValor(Kenken *k, int fila, int columna) {
-    // Es buena práctica añadir validación de límites aquí
+int getValor(Sudoku *s, int fila, int columna) {
     if (fila >= 0 && fila < FILAS && columna >= 0 && columna < COLUMNAS) {
-        return k->kenken[fila][columna];
+        return s->sudoku[fila][columna];
     }
-    return -1; // Valor de error o manejo apropiado
+    return -1;
 }
 
 // Función para establecer un valor específico
-void setValor(Kenken *k, int fila, int columna, int valor) {
-    // Es buena práctica añadir validación de límites aquí
+void setValor(Sudoku *s, int fila, int columna, int valor) {
     if (fila >= 0 && fila < FILAS && columna >= 0 && columna < COLUMNAS) {
-        k->kenken[fila][columna] = valor;
+        s->sudoku[fila][columna] = valor;
     }
+}
+
+// Función para verificar si una celda es válida
+int esValido(Sudoku *s, int fila, int columna, int valor) {
+    // Verificar fila
+    for (int j = 0; j < COLUMNAS; j++) {
+        if (j != columna && s->sudoku[fila][j] == valor) {
+            return 0;
+        }
+    }
+    
+    // Verificar columna
+    for (int i = 0; i < FILAS; i++) {
+        if (i != fila && s->sudoku[i][columna] == valor) {
+            return 0;
+        }
+    }
+    
+    // Verificar subsección 3x3
+    int inicioFila = (fila / SUBSECTION_SIZE) * SUBSECTION_SIZE;
+    int inicioCol = (columna / SUBSECTION_SIZE) * SUBSECTION_SIZE;
+    
+    for (int i = inicioFila; i < inicioFila + SUBSECTION_SIZE; i++) {
+        for (int j = inicioCol; j < inicioCol + SUBSECTION_SIZE; j++) {
+            if ((i != fila || j != columna) && s->sudoku[i][j] == valor) {
+                return 0;
+            }
+        }
+    }
+    
+    return 1;
+}
+
+// Función para verificar si el Sudoku está completo
+int estaCompleto(Sudoku *s) {
+    for (int i = 0; i < FILAS; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+            if (s->sudoku[i][j] == 0) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+// Función para encontrar la siguiente celda vacía
+int encontrarCeldaVacia(Sudoku *s, int *fila, int *columna) {
+    for (int i = 0; i < FILAS; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+            if (s->sudoku[i][j] == 0) {
+                *fila = i;
+                *columna = j;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+// Función para copiar la matriz original
+void copiarOriginal(Sudoku *s) {
+    memcpy(s->original, s->sudoku, sizeof(int) * FILAS * COLUMNAS);
+}
+
+// Función para verificar si una celda es pista inicial
+int esPistaInicial(Sudoku *s, int fila, int columna) {
+    if (fila >= 0 && fila < FILAS && columna >= 0 && columna < COLUMNAS) {
+        return s->original[fila][columna] != 0;
+    }
+    return 0;
 }

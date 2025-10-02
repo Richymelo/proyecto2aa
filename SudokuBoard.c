@@ -1,9 +1,8 @@
-#include "sudokuboard.h"
-#include <string.h> // Para funciones como memset o memcpy
+#include "SudokuBoard.h"
 
 // Implementación de las funciones
 
-void iniciarComponentes(SudokuBoard *board) {
+void iniciarComponentesSudoku(SudokuBoard *board) {
     // Inicialización de atributos (simulando la de Java)
     board->txtAncho = 70;
     board->txtAltura = 70;
@@ -29,12 +28,12 @@ void iniciarComponentes(SudokuBoard *board) {
 
 void inicializarSudokuBoard(SudokuBoard *board) {
     // Llama a la función de inicialización de atributos
-    iniciarComponentes(board);
+    iniciarComponentesSudoku(board);
     // Nota: initComponents() en Java es para inicialización automática, aquí se hace explícitamente.
 }
 
 // **Función sin implementación de GUI real en C puro**
-void crearCamposTxt(SudokuBoard *board) {
+void crearCamposTxtSudoku(SudokuBoard *board) {
     printf("Creando campos de texto (simulado). Se necesita una librería GUI.\n");
     int x = board->txtMargen;
     int y = board->txtMargen;
@@ -73,7 +72,7 @@ void crearKenken(SudokuBoard *board) {
     // Esto se maneja con funciones específicas de la librería GUI elegida.
     
     // Lógica para crear las celdas
-    crearCamposTxt(board);
+    crearCamposTxtSudoku(board);
 }
 
 // Lógica de `pressed(JTextField txt)`

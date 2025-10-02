@@ -1,0 +1,107 @@
+/* Estilos para el Sudoku Solver */
+
+/* Celdas normales */
+#celda-normal {
+    border: 1px solid #333;
+    border-radius: 2px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#celda-normal:focus {
+    border-color: #0078d4;
+    background-color: #f0f8ff;
+}
+
+/* Celdas con pistas iniciales */
+#pista-inicial {
+    border: 2px solid #000;
+    border-radius: 2px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #e0e0e0;
+    color: #000000;
+}
+
+/* Celdas claras (para alternar colores en subsecciones) */
+#celda-clara {
+    border: 1px solid #333;
+    border-radius: 2px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#celda-clara:focus {
+    border-color: #0078d4;
+    background-color: #f0f8ff;
+}
+
+/* Celdas oscuras (para alternar colores en subsecciones) */
+#celda-oscura {
+    border: 1px solid #333;
+    border-radius: 2px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f8f8f8;
+    color: #000000;
+}
+
+#celda-oscura:focus {
+    border-color: #0078d4;
+    background-color: #f0f8ff;
+}
+
+/* Botones */
+button {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 2px solid #0078d4;
+    background-color: #ffffff;
+    color: #0078d4;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background-color: #0078d4;
+    color: #ffffff;
+}
+
+button:active {
+    background-color: #005a9e;
+    border-color: #005a9e;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    border-color: #cccccc;
+}
+
+/* Etiquetas */
+#timer_label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #0078d4;
+}
+
+#status_label {
+    font-size: 14px;
+    color: #333333;
+}
+
+/* Frame del Sudoku */
+#sudoku_grid {
+    background-color: #ffffff;
+    border: 2px solid #333;
+    border-radius: 4px;
+}

@@ -3,7 +3,7 @@
 
 #include <stdio.h> // Para entrada/salida
 #include <stdlib.h> // Para funciones generales
-#include "kenken.h" // Asume la definición de la estructura Kenken
+#include "Sudoku.h" // Asume la definición de la estructura Kenken
 
 // Dimensiones del tablero
 #define BOARD_SIZE 6
@@ -52,7 +52,7 @@ typedef struct {
 void inicializarSudokuBoard(SudokuBoard *board);
 
 // Inicia los valores de los atributos
-void iniciarComponentes(SudokuBoard *board);
+void iniciarComponentesSudoku(SudokuBoard *board);
 
 // Crea el tablero de Kenken (configura el panel y llama a crearCamposTxt)
 // REQUIERE una librería GUI para la implementación real
@@ -60,7 +60,7 @@ void crearKenken(SudokuBoard *board);
 
 // Crea y posiciona las celdas de texto
 // REQUIERE una librería GUI para la implementación real
-void crearCamposTxt(SudokuBoard *board);
+void crearCamposTxtSudoku(SudokuBoard *board);
 
 // Simulación de la lógica de eventos al hacer clic
 void pressed(SudokuBoard *board, Cell *txt);

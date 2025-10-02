@@ -33,7 +33,7 @@ typedef struct {
 void inicializarTableroNumeros(TableroNumeros *tablero);
 
 // Inicia los valores de los atributos (equivalente a iniciarComponentes)
-void iniciarComponentes(TableroNumeros *tablero);
+void iniciarComponentesTablero(TableroNumeros *tablero);
 
 // Configura el tablero (equivalente a crearTablero, pero sin GUI real)
 // En una implementación real, esta función usaría la librería GUI para
@@ -41,6 +41,6 @@ void iniciarComponentes(TableroNumeros *tablero);
 void crearTablero(TableroNumeros *tablero);
 
 // Función placeholder para crear campos de texto (equivalente a crearCamposTxt)
-void crearCamposTxt(TableroNumeros *tablero);
+void crearCamposTxtTablero(TableroNumeros *tablero);
 
 #endif // TABLERONUMEROS_H
