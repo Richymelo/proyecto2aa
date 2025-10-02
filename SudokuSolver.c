@@ -1,6 +1,7 @@
 #include "SudokuSolver.h"
 #include <time.h>
 #include <unistd.h>
+#include <gtk/gtk.h>
 
 // Función para actualizar la interfaz durante la resolución
 void actualizar_celda_solver(SolverContext *context, int fila, int columna, int valor) {

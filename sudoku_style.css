@@ -6,7 +6,7 @@
     border-radius: 2px;
     font-size: 18px;
     font-weight: bold;
-    text-align: center;
+    justify-content: center;
     background-color: #ffffff;
     color: #000000;
 }
@@ -22,7 +22,7 @@
     border-radius: 2px;
     font-size: 18px;
     font-weight: bold;
-    text-align: center;
+    justify-content: center;
     background-color: #e0e0e0;
     color: #000000;
 }
@@ -33,7 +33,7 @@
     border-radius: 2px;
     font-size: 18px;
     font-weight: bold;
-    text-align: center;
+    justify-content: center;
     background-color: #ffffff;
     color: #000000;
 }
@@ -49,7 +49,7 @@
     border-radius: 2px;
     font-size: 18px;
     font-weight: bold;
-    text-align: center;
+    justify-content: center;
     background-color: #f8f8f8;
     color: #000000;
 }

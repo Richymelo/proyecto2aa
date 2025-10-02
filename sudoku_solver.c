@@ -26,6 +26,15 @@ typedef struct {
     SolverContext solver_context;
 } AppData;
 
+// Función dummy para suprimir warnings de GTK
+static void suppress_log_handler(const gchar *log_domain, GLogLevelFlags log_level, const gchar *message, gpointer user_data) {
+    (void)log_domain;
+    (void)log_level;
+    (void)message;
+    (void)user_data;
+    // Función vacía para suprimir warnings
+}
+
 // Función para actualizar el timer
 static gboolean __attribute__((unused)) update_timer(gpointer data) {
     // This function is currently unused but kept for potential future use
@@ -337,9 +346,9 @@ int main(int argc, char *argv[]) {
     AppData app;
     
     // Suppress GTK warnings and debug messages
-    g_log_set_handler("Gtk", G_LOG_LEVEL_WARNING, (GLogFunc)gtk_false, NULL);
-    g_log_set_handler("GLib-GObject", G_LOG_LEVEL_WARNING, (GLogFunc)gtk_false, NULL);
-    g_log_set_handler("GLib", G_LOG_LEVEL_WARNING, (GLogFunc)gtk_false, NULL);
+    g_log_set_handler("Gtk", G_LOG_LEVEL_WARNING, suppress_log_handler, NULL);
+    g_log_set_handler("GLib-GObject", G_LOG_LEVEL_WARNING, suppress_log_handler, NULL);
+    g_log_set_handler("GLib", G_LOG_LEVEL_WARNING, suppress_log_handler, NULL);
     
     gtk_init(&argc, &argv);
     

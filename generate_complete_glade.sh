@@ -186,3 +186,5 @@ echo "✓ Todas las celdas tienen las clases CSS correctas (celda-clara/celda-os
 echo "✓ El archivo está listo para usar en Linux"
 
 
+
+
