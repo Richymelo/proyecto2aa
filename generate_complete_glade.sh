@@ -188,3 +188,5 @@ echo "✓ El archivo está listo para usar en Linux"
 
 
 
+
+

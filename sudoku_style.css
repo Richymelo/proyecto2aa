@@ -6,7 +6,6 @@
     border-radius: 2px;
     font-size: 18px;
     font-weight: bold;
-    justify-content: center;
     background-color: #ffffff;
     color: #000000;
 }
@@ -22,7 +21,6 @@
     border-radius: 2px;
     font-size: 18px;
     font-weight: bold;
-    justify-content: center;
     background-color: #e0e0e0;
     color: #000000;
 }
@@ -33,7 +31,6 @@
     border-radius: 2px;
     font-size: 18px;
     font-weight: bold;
-    justify-content: center;
     background-color: #ffffff;
     color: #000000;
 }
@@ -49,7 +46,6 @@
     border-radius: 2px;
     font-size: 18px;
     font-weight: bold;
-    justify-content: center;
     background-color: #f8f8f8;
     color: #000000;
 }
@@ -68,7 +64,6 @@ button {
     border: 2px solid #0078d4;
     background-color: #ffffff;
     color: #0078d4;
-    transition: all 0.2s;
 }
 
 button:hover {
