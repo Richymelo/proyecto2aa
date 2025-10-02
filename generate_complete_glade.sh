@@ -185,3 +185,4 @@ echo "✓ Archivo Glade completo generado con 81 celdas!"
 echo "✓ Todas las celdas tienen las clases CSS correctas (celda-clara/celda-oscura)"
 echo "✓ El archivo está listo para usar en Linux"
 
+
